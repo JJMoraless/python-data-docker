@@ -1,12 +1,23 @@
 services:
-  app-service:
+  rest-fast-api-test:
     build:
       context: .
       dockerfile: Dockerfile
     volumes:
       - .:/app
     ports:
-      - '99:80'
+      - 99:80
+    depends_on:
+      - posgrest
 
-    
- 
+  posgrest:
+    container_name: posgrest_fast_api
+    image: postgres:15.3
+    volumes:
+      - ./postgrest-db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: jhon
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: fast_api_db
+    ports:
+      - 5432:5432
