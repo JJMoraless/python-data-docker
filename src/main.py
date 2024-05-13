@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from src.presentation.schemas.item import Item
 
 app = FastAPI()
 
@@ -8,6 +9,6 @@ def index():
     return {"message": "Hello, World!"}
 
 
-@app.get("/hola")
-def index_hola():
+@app.post("/items")
+def index_hola(item: Item):
     return {"message": "Hello, World!"}
