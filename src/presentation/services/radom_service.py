@@ -1,3 +1,6 @@
+from functools import reduce
+import csv
+
 set_a = {"col", "mex", "bol"}
 set_be = {"pe", "bol"}
 
@@ -58,6 +61,29 @@ set_be = {"pe", "bol"}
 # text = "hello"
 # unique = {c: c.upper() for c in text if c in "aeiou"}
 
-person = {"name": "pepe", "age": 22}
-age, name = person.values()
-print(age, name)
+# person = {"name": "pepe", "age": 22}
+# age, name = person.values()
+# print(age, name)
+
+# !reduce
+# print(reduce(lambda acc, number: acc + number, [1, 2, 3]))
+
+
+#!iterators
+# sirven para trabajar con un gran cantidad de datos ya que hace carga perezosa
+
+interator = iter([1, 2, 3])
+print(next(interator))
+print(next(interator))
+
+
+# !read files
+
+# with open("paises.csv") as paises:
+#     content = paises.read()
+#     print(content)
+
+# with open("../../store/paises.csv", newline="") as f:
+#     reader = csv.reader(f)
+#     for row in reader:
+#         print(row)

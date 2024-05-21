@@ -1,4 +1,19 @@
 services:
+  posgrest:
+    container_name: posgrest_fast_api
+    image: postgres:16.3-bullseye
+    volumes:
+      - ia_facilpos:/var/lib/postgresql/data/pgdata
+    environment:
+      PGDATA: /var/lib/postgresql/data/pgdata
+      POSTGRES_USER: jhon
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: ia_facilpos
+    ports:
+      - 7000:5432
+    networks:
+      - backend
+
   rest-fast-api-test:
     build:
       context: .
@@ -9,18 +24,11 @@ services:
       - 5000:5000
     depends_on:
       - posgrest
+    networks:
+      - backend
 
-  posgrest:
-    container_name: posgrest_fast_api
-    image: postgres:15.3
-    user: 1000:1000
+networks:
+  backend:
 
-    volumes:
-      - ./postgrest-db:/var/lib/postgresql/data/pgdata
-    environment:
-      PGDATA: /var/lib/postgresql/data/pgdata
-      POSTGRES_USER: jhon
-      POSTGRES_PASSWORD: 123
-      POSTGRES_DB: fast_api_db
-    ports:
-      - 5432:5432
+volumes:
+  ia_facilpos:
