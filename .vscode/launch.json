@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Run app.main",
+            "type": "python",
+            "request": "launch",
+            "module": "app.main",
+            "python": "python3.10",
+            "args": [],
+            "env": {},
+            "envFile": "${workspaceFolder}/.env",
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal"
+        }
+    ]
+}

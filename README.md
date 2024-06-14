@@ -1,0 +1,2 @@
+- version de python: 3.10
+- ejecutar la api `python3.10 -m app.main`
