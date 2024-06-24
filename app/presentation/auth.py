@@ -31,8 +31,8 @@ def register_user(user: UserSchema):
 def login_user(user: UserLoginSchema):
     login_data = auth_service.login_user(email=user.email, password=user.password)
     token = login_data.get("token")
-    data = auth_service.validate_token(token)
-    return ResApi.ok({"token": token, "cosa": data})
+    user_data = auth_service.validate_token(token)
+    return ResApi.ok({"token": token, "user": user_data})
 
 
 @auth_router.post("/token", tags=["auth"])
