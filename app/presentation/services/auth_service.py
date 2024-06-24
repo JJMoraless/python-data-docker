@@ -5,12 +5,8 @@ from ...config import envs
 from ...domain.schemas.user import UserSchema
 from ...domain.errors.api_error import ApiError
 from ...data.models.user import UserModel
+from ...domain.enums.user_role import RoleEnum
 
-from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
-from fastapi import Depends
-
-from datetime import datetime
-from datetime import timedelta
 
 import bcrypt
 
@@ -55,7 +51,11 @@ class AuthService:
             raise ApiError.not_found("email already exists")
 
         pass_encripted = self.encrypt_password(user.password)
-        user_dict = {**user.model_dump(), "password": pass_encripted}
+        user_dict = {
+            **user.model_dump(),
+            "password": pass_encripted,
+            "role_id": RoleEnum.EMPLOYEE.value,
+        }
         new_user = UserModel(**user_dict)
         self.db.add(new_user)
         self.db.commit()
@@ -64,8 +64,7 @@ class AuthService:
         del user["password"]
         token = self.create_token(user)
 
-        
-        return {"token": token}
+        return {"token": token, "user": user}
 
     def login_user(self, email: str, password: str) -> dict:
         user_found = self.db.query(UserModel).filter(UserModel.email == email).first()
