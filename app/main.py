@@ -12,13 +12,13 @@ app = FastAPI()
 app.title = "fas api IA - TEST"
 app.version = "0.0.1"
 
+
 # DB - DDL
-# Base.metadata.drop_all(bind=engine)
+Base.metadata.drop_all(bind=engine)
 Base.metadata.create_all(bind=engine)
 
 # seeders
 seed_user_roles()
-
 
 
 # middlewares
