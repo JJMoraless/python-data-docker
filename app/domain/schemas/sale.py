@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import Optional
+from typing import Optional, List
 
 
 class SaleSchema(BaseModel):
@@ -12,3 +12,12 @@ class SaleSchema(BaseModel):
     total_tax_amount: float
     total: float
 
+
+class ItemDetailSchema(BaseModel):
+    item_id: int
+    quantity: int
+
+
+class SalePaginatedQuerySchema(BaseModel):
+    page: int = 1
+    limit: int = 10

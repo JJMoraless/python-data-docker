@@ -29,3 +29,7 @@ class ApiError(HTTPException):
     @staticmethod
     def unauthorized(msg: str | None):
         return ApiError(status_code=status.HTTP_401_UNAUTHORIZED, msg=msg)
+
+    @staticmethod
+    def forbiden(msg: str | None):
+        return ApiError(status_code=status.HTTP_403_FORBIDDEN, msg=msg)
