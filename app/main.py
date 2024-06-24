@@ -6,6 +6,7 @@ from .config.database import Base, engine
 from .presentation.middlewares.error_handler import ErrorHandler
 from .presentation import routes
 from .data.models import *
+from .data.seeders.user_roles import seed_user_roles
 
 app = FastAPI()
 app.title = "fas api IA - TEST"
@@ -14,6 +15,11 @@ app.version = "0.0.1"
 # DB - DDL
 # Base.metadata.drop_all(bind=engine)
 Base.metadata.create_all(bind=engine)
+
+# seeders
+seed_user_roles()
+
+
 
 # middlewares
 app.add_middleware(ErrorHandler)
