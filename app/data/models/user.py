@@ -1,5 +1,5 @@
 from app.config.database import Base
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, ForeignKey
 
 from sqlalchemy.orm import relationship
 
@@ -11,6 +11,9 @@ class UserModel(Base):
     email = Column(String, unique=True, index=True)
     name = Column(String)
     password = Column(String)
+
+    role_id = Column(Integer, ForeignKey("user_roles.id"))
+    role = relationship("UserRoleModel", back_populates="users")
 
     sales = relationship("SaleModel", back_populates="user")
     emails_acounts = relationship("EmailAccountModel", back_populates="user")

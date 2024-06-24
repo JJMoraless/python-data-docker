@@ -1,5 +1,5 @@
 from app.config.database import Base
-from sqlalchemy import Column, Integer, String, Double
+from sqlalchemy import Column, Integer, String, Double, Boolean
 
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
@@ -17,13 +17,13 @@ class SaleModel(Base):
     total_tax_amount = Column(Double)
     total = Column(Double)
 
+    is_cancelled = Column(Boolean, default=False)
+    is_completed = Column(Boolean, default=False)
+
     # realtionships
     user_id = Column(Integer, ForeignKey("users.id"))
     user = relationship("UserModel", back_populates="sales")
     details = relationship("Detail", back_populates="sale")
 
-
     def to_dict(self):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}
-
-
