@@ -3,12 +3,11 @@
 ## ejecucion
 
 la api se peude ejcutar tanto en su maquina tanto como en docker, lo mas reomendable es usar docker
-
-- en local con python 10:
+- en local con python 10 en su carpeta raiz del proyecto:
   - `python3.10 -m app.main`
   - `pip install /app/requirements.txt`
 
-- docker:
+- docker, en carpeta raiz del proyecto:
   - `docker compose build`
   - `docker compose up`
 
