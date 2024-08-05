@@ -18,12 +18,15 @@ class UserModel(Base):
     sales = relationship("SaleModel", back_populates="user")
     emails_acounts = relationship("EmailAccountModel", back_populates="user")
 
+    employees = relationship(
+        "EmployeeManagerModel",
+        foreign_keys="[EmployeeManagerModel.manager_id]",
+        back_populates="manager",
+    )
     managers = relationship(
-        "UserModel",
-        secondary="employees_managers",
-        primaryjoin=id == EmployeeManagerModel.employee_id,
-        secondaryjoin=id == EmployeeManagerModel.manager_id,
-        backref="employees",  # crea employees para acceder a los empleados de un manager
+        "EmployeeManagerModel",
+        foreign_keys="[EmployeeManagerModel.employee_id]",
+        back_populates="employee",
     )
 
     def to_dict(self):

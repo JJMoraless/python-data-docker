@@ -1,8 +1,8 @@
-from functools import reduce
-import csv
+# from functools import reduce
+# import csv
 
-set_a = {"col", "mex", "bol"}
-set_be = {"pe", "bol"}
+# set_a = {"col", "mex", "bol"}
+# set_be = {"pe", "bol"}
 
 # !union
 # set_c = set_a.union(set_be)
@@ -72,9 +72,10 @@ set_be = {"pe", "bol"}
 #!iterators
 # sirven para trabajar con un gran cantidad de datos ya que hace carga perezosa
 
-interator = iter([1, 2, 3])
-print(next(interator))
-print(next(interator))
+# interator = iter([1, 2, 3])
+# print(next(interator))
+# print(next(interator))
+
 
 
 # !read files

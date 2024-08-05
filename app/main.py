@@ -13,16 +13,18 @@ app.title = "fas api IA - TEST"
 app.version = "0.0.1"
 
 
-# DB - DDL
-Base.metadata.drop_all(bind=engine)
-Base.metadata.create_all(bind=engine)
 
-# seeders
-seed_user_roles()
+# DB - DDL
+# Base.metadata.drop_all(bind=engine)
+# Base.metadata.create_all(bind=engine)
+
+# # seeders
+# seed_user_roles()
 
 
 # middlewares
 app.add_middleware(ErrorHandler)
+
 
 
 # routers
@@ -31,6 +33,7 @@ app.include_router(prefix="/items", router=routes.item_router)
 app.include_router(prefix="/sales", router=routes.sale_router)
 app.include_router(prefix="/auth", router=routes.auth_router)
 app.include_router(prefix="/emails-acounts", router=routes.email_acount_router)
+app.include_router(prefix="/ia", router=routes.ia_router)
 
 
 if __name__ == "__main__":

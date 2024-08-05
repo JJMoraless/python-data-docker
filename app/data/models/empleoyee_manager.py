@@ -9,8 +9,13 @@ class EmployeeManagerModel(Base):
     employee_id = Column(Integer, ForeignKey("users.id"), primary_key=True)
     manager_id = Column(Integer, ForeignKey("users.id"), primary_key=True)
 
-    employee = relationship("UserModel", foreign_keys=[employee_id])
-    manager = relationship("UserModel", foreign_keys=[manager_id])
+    employee = relationship(
+        "UserModel", foreign_keys=[employee_id], back_populates="managers"
+    )
+    
+    manager = relationship(
+        "UserModel", foreign_keys=[manager_id], back_populates="employees"
+    )
 
     def to_dict(self):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}
